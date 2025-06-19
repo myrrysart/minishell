@@ -6,7 +6,7 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 12:54:08 by jyniemit          #+#    #+#              #
-#    Updated: 2025/06/12 11:17:18 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/06/19 17:50:59 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,27 +16,35 @@ CFLAGS = -Wall -Wextra -Werror
 SRCDIR = ./src/
 SRC =	$(addprefix $(SRCDIR), \
 		main.c \
+		shell.c \
+		arena.c \
 )
 OBJDIR = ./build/
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
-LIBFTDIR = ./include/libft/
+LIBFTDIR = ./includes/libft/
 LIBFT = $(LIBFTDIR)libft.a
-INCLUDEDIR = ./include/
+INCLUDEDIR = ./includes/
 HEADER = $(INCLUDEDIR)minishell.h
 
 all: $(NAME)
 
-$(NAME): :$(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS) $(HEADER)
+	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
 
-$(OBJS): 
+$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER) | $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCLUDEDIR) -I$(LIBFTDIR) -c $< -o $@
+
 $(OBJDIR):
-	mkdir -P $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
-re: fclean all
+$(LIBFT):
+	@make -C $(LIBFTDIR)
 
 fclean: clean
 	rm -rf $(BUILDDIR)
 	@make -C $(LIBFTDIR) fclean
+
+re: fclean all
 
 debug: fclean
 	@make -C $(LIBFTDIR) debug
