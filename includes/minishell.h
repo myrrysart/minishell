@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:17 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/19 17:53:35 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:08:52 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 // libft
 # include <libft.h>
 // readline
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define ARG_MAX 2097152
 
@@ -36,7 +36,7 @@ typedef enum e_exit_num
 	OK,
 	ERROR,
 	ERRNOMEM
-} t_exit_num;
+}	t_exit_num;
 
 typedef struct s_arena
 {
@@ -60,7 +60,7 @@ void	*arena_alloc(t_arena *arena, size_t size);
 void	arena_destroy(t_arena *arena);
 
 // shell.c
-t_shell *shell_init(char **env);
+t_shell	*shell_init(char **env);
 void	shell_cleanup(t_shell *shell);
 int		shell_loop(t_shell *shell);
 #endif//MINISHELL_H
