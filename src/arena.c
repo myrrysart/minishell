@@ -15,7 +15,6 @@
 void	*arena_alloc(t_arena *arena, size_t size);
 void	arena_destroy(t_arena *arena);
 
-
 t_arena	*arena_create(size_t capacity)
 {
 	t_arena	*allocation;

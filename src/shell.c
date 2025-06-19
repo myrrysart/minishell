@@ -12,31 +12,31 @@
 
 #include "../includes/minishell.h"
 
-t_shell *shell_init(char **env);
+t_shell	*shell_init(char **env);
 void	shell_cleanup(t_shell *shell);
 int		shell_loop(t_shell *shell);
 
-int		shell_loop(t_shell *shell)
+int	shell_loop(t_shell *shell)
 {
 	char	*line;
 
-	while(!shell->should_exit)
+	while (!shell->should_exit)
 	{
 		line = readline("super_bash_bros: ");
 		if (!line)
 		{
 			shell->should_exit = 1;
-			break;
+			break ;
 		}
 		ft_printf("%s was written, this does nothing else yet\n", line);
-		free (line);
+		free(line);
 	}
 	return (0);
 }
 
-t_shell *shell_init(char **env)
+t_shell	*shell_init(char **env)
 {
-	t_shell *shell;
+	t_shell	*shell;
 
 	shell = malloc(sizeof(t_shell));
 	shell->exit_code = 0;
@@ -47,6 +47,6 @@ t_shell *shell_init(char **env)
 		free(shell);
 		return (NULL);
 	}
-	shell->env=env;
+	shell->env = env;
 	return (shell);
 }

@@ -12,10 +12,9 @@
 
 #include "../includes/minishell.h"
 
-
 int	main(int argc, char **argv, char **env)
 {
-	t_shell *data;
+	t_shell	*data;
 
 	(void)argc;
 	(void)argv;

@@ -6,7 +6,7 @@
 #    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 12:54:08 by jyniemit          #+#    #+#              #
-#    Updated: 2025/06/19 17:50:59 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/06/19 18:05:51 by jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,13 @@ $(OBJDIR):
 $(LIBFT):
 	@make -C $(LIBFTDIR)
 
+clean:
+	rm -rf $(BUILDDIR)
+
 fclean: clean
 	rm -rf $(BUILDDIR)
 	@make -C $(LIBFTDIR) fclean
+	rm $(NAME)
 
 re: fclean all
 
