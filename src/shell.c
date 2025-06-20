@@ -40,6 +40,8 @@ t_shell	*shell_init(char **env)
 	t_shell	*shell;
 
 	shell = malloc(sizeof(t_shell));
+	if (!shell)
+		return (NULL);
 	shell->exit_code = 0;
 	shell->should_exit = 0;
 	shell->arena_pool = arena_create(ARENA_BUFFER);
