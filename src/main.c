@@ -6,12 +6,13 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/19 17:31:32 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:53:49 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
+int	exit_cleanup(t_shell **data);
 int	main(int argc, char **argv, char **env)
 {
 	t_shell	*data;
@@ -20,5 +21,15 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	data = shell_init(env);
 	shell_loop(data);
-	return (data->exit_code);
+	return (exit_cleanup(&data));
+}
+
+int	exit_cleanup(t_shell **data)
+{
+	int	exit_code_result;
+
+	exit_code_result = (*data)->exit_code;
+	arena_destroy((*data)->arena_pool);
+	free(*data);
+	return (exit_code_result);
 }
