@@ -19,6 +19,7 @@ SRC =	$(addprefix $(SRCDIR), \
 		shell.c \
 		arena.c \
 		signals.c \
+		test.c \
 )
 OBJDIR = ./build/
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))

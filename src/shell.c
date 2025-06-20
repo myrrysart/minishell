@@ -29,7 +29,10 @@ int	shell_loop(t_shell *shell)
 			shell->exit_code = EXIT_LINEFAIL;
 			break ;
 		}
+		if (*line)
+			add_history(line);
 		ft_printf("%s was written, this does nothing else yet\n", line);
+		test(line, shell);
 		free(line);
 	}
 	return (shell->exit_code);

@@ -37,9 +37,12 @@ extern volatile sig_atomic_t	g_received_signal;
 
 typedef enum e_exit_num
 {
-	OK,
-	ERROR,
-	ERRNOMEM
+	EXIT_OK,
+	EXIT_ERROR,
+	EXIT_EXIT,
+	EXIT_ARENAFAIL,
+	EXIT_LINEFAIL,
+	EXIT_SHELLINITFAIL
 }	t_exit_num;
 
 typedef struct s_arena
@@ -72,4 +75,6 @@ int		shell_loop(t_shell *shell);
 void	signal_handler(int signum);
 void	setup_signals(void);
 
+// test.c
+void	test(char *line, t_shell *data);
 #endif//MINISHELL_H
