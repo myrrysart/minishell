@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 16:17:05 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/19 17:36:31 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:54:33 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int	shell_loop(t_shell *shell)
 		if (!line)
 		{
 			shell->should_exit = 1;
+			shell->exit_code = EXIT_LINEFAIL;
 			break ;
 		}
 		ft_printf("%s was written, this does nothing else yet\n", line);
 		free(line);
 	}
-	return (0);
+	return (shell->exit_code);
 }
 
 t_shell	*shell_init(char **env)
