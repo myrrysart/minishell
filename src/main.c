@@ -13,6 +13,7 @@
 #include "minishell.h"
 
 int	exit_cleanup(t_shell **data);
+
 int	main(int argc, char **argv, char **env)
 {
 	t_shell	*data;
@@ -20,6 +21,8 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	data = shell_init(env);
+	if (!data)
+		return (EXIT_SHELLINITFAIL);
 	shell_loop(data);
 	return (exit_cleanup(&data));
 }
