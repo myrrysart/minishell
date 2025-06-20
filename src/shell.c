@@ -39,6 +39,7 @@ t_shell	*shell_init(char **env)
 {
 	t_shell	*shell;
 
+	setup_signals();
 	shell = malloc(sizeof(t_shell));
 	if (!shell)
 		return (NULL);
