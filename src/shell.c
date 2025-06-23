@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 16:17:05 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/23 08:50:44 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/23 08:55:41 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	shell_loop(t_shell *shell)
 		if (*line)
 			add_history(line);
 		ft_printf("%s was written, this does nothing else yet\n", line);
-		test(line, shell);
 		shell->raw_input = line;
+		test(shell);
 		free(line);
 	}
 	return (shell->exit_code);
