@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:17 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/20 15:59:35 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/23 08:51:18 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_shell
 	t_exit_num	exit_code;
 	int			should_exit;
 	t_arena		*arena_pool;
+	char		*raw_input;
 	char		**env;
 }	t_shell;
 
