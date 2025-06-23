@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/20 15:53:49 by jyniemit         ###   ########.fr       */
+/*   Created: 2025/06/20 14:31:14 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/06/20 14:55:27 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exit_cleanup(t_shell **data);
+volatile sig_atomic_t	g_received_signal = 0;
 
-int	main(int argc, char **argv, char **env)
+void	signal_handler(int signum)
 {
-	t_shell	*data;
-
-	(void)argc;
-	(void)argv;
-	data = shell_init(env);
-	if (!data)
-		return (EXIT_SHELLINITFAIL);
-	shell_loop(data);
-	return (exit_cleanup(&data));
+	g_received_signal = signum;
+	if (signum == SIGINT)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
-int	exit_cleanup(t_shell **data)
+void	setup_signals(void)
 {
-	int	exit_code_result;
+	struct sigaction	sa;
 
-	exit_code_result = (*data)->exit_code;
-	arena_destroy((*data)->arena_pool);
-	free(*data);
-	return (exit_code_result);
+	sa.sa_handler = signal_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
