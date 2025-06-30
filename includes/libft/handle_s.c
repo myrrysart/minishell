@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 09:47:02 by skarras          ###   ########.fr       */
+/*   Created: 2025/04/18 14:26:29 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/04/28 14:38:31 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "minishell.h"
-
-int	main(int argc, char *argv[])
+int	handle_s(va_list args)
 {
-	(void)argc;
-	(void)argv;
-	char	*arg;
-	//parser(argv[1]);
-	arg = readline(NULL);
-	printf("%d\n", num_of_splits(arg));
-	return (0);
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = va_arg(args, char *);
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }

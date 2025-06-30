@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 09:47:02 by skarras          ###   ########.fr       */
+/*   Created: 2024/10/31 15:08:36 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/10/31 15:09:56 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	main(int argc, char *argv[])
+int	ft_tolower(int c)
 {
-	(void)argc;
-	(void)argv;
-	char	*arg;
-	//parser(argv[1]);
-	arg = readline(NULL);
-	printf("%d\n", num_of_splits(arg));
-	return (0);
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }

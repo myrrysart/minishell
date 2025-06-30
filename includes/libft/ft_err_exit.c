@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_err_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 09:47:02 by skarras          ###   ########.fr       */
+/*   Created: 2025/05/17 15:19:35 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/05/17 15:24:08 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	ft_err_exit(char *message)
 {
-	(void)argc;
-	(void)argv;
-	char	*arg;
-	//parser(argv[1]);
-	arg = readline(NULL);
-	printf("%d\n", num_of_splits(arg));
-	return (0);
+	while (*message)
+		write(2, message++, 1);
+	exit(1);
 }

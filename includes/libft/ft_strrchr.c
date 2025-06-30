@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 09:47:02 by skarras          ###   ########.fr       */
+/*   Created: 2024/11/11 12:49:15 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/11/11 12:55:28 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+char	*ft_strrchr(const char *s, int c)
 {
-	(void)argc;
-	(void)argv;
-	char	*arg;
-	//parser(argv[1]);
-	arg = readline(NULL);
-	printf("%d\n", num_of_splits(arg));
-	return (0);
+	size_t	len;
+
+	len = ft_strlen(s);
+	if ((char)c == 0)
+		return ((char *)&s[len]);
+	while (len > 0 && s[len - 1] != (char)c)
+		len--;
+	if (len)
+		return ((char *)&s[len - 1]);
+	return (NULL);
 }

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 12:49:28 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 09:47:02 by skarras          ###   ########.fr       */
+/*   Created: 2024/11/11 13:06:01 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/11/11 13:06:08 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	main(int argc, char *argv[])
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	(void)argc;
-	(void)argv;
-	char	*arg;
-	//parser(argv[1]);
-	arg = readline(NULL);
-	printf("%d\n", num_of_splits(arg));
-	return (0);
+	unsigned int	i;
+
+	i = 0;
+	if (!s || !f)
+		return ;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

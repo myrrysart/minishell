@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:17 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/23 08:51:18 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:28:41 by skarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <readline/history.h>
 // sigaction & signals
 # include <signal.h>
+// boolean values
+# include <stdbool.h>
 
 # define ARG_MAX 2097152
 
@@ -62,6 +64,19 @@ typedef struct s_shell
 	char		**env;
 }	t_shell;
 
+typedef enum e_token_types
+{
+	PIPE,
+	REDIRECTION,
+	OTHER
+}	t_token_types;
+
+typedef struct s_token
+{
+	t_token_types	type;
+	char			*lexeme;
+}	t_token;
+
 // arena.c
 t_arena	*arena_create(size_t capacity);
 void	*arena_alloc(t_arena *arena, size_t size);
@@ -76,6 +91,12 @@ int		shell_loop(t_shell *shell);
 void	signal_handler(int signum);
 void	setup_signals(void);
 
-// test.c
-void	test(char *line, t_shell *data);
+// parsing.c
+void	lexer(char *line);
+void	parser(char *line);
+int		num_of_splits(char *line);
+int		isdelimeter(char c);
+t_token	**split_to_tokens(char *line);
+int		ft_strnlen(const char *s);
+
 #endif//MINISHELL_H

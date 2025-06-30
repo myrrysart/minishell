@@ -3,23 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+         #
+#    By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/11 12:54:08 by jyniemit          #+#    #+#              #
-#    Updated: 2025/06/20 15:54:58 by jyniemit         ###   ########.fr        #
+#    Updated: 2025/06/24 09:43:16 by skarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRCDIR = ./src/
 SRC =	$(addprefix $(SRCDIR), \
 		main.c \
-		shell.c \
-		arena.c \
-		signals.c \
-		test.c \
+		parsing.c \
 )
 OBJDIR = ./build/
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
