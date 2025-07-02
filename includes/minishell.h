@@ -6,7 +6,7 @@
 /*   By: skarras <skarras@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:17 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/06/30 10:28:41 by skarras          ###   ########.fr       */
+/*   Updated: 2025/07/02 09:35:28 by skarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ int		num_of_splits(char *line);
 int		isdelimeter(char c);
 t_token	**split_to_tokens(char *line);
 int		ft_strnlen(const char *s);
+int		copy_delimeter(t_token *token, char *line);
+t_token	**allocate_tokens(int n);
 
 #endif//MINISHELL_H

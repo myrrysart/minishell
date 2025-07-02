@@ -13,26 +13,34 @@
 t_token	**split_to_tokens(char *line)
 {
 	int		splits;
-	int		i;
 	int		e;
 	int		temp_len;
 	t_token	**tokens;
 
 	splits = num_of_splits(line);
-	tokens = (t_token **) malloc(splits * sizeof(t_token *));
+	tokens = allocate_tokens(splits);
 	e = 0;
 	while(*line)
 	{
+		if (isdelimeter(*line))
+		{
+			if (*line == SPACE)
+			{
+				line++;
+				continue ;
+			}
+			line += copy_delimeter(tokens[e], line);
+			e++;
+			continue;
+		}
 		temp_len = ft_strnlen(line);
 		tokens[e]->lexeme = (char *) malloc((temp_len + 1) * sizeof(char));
 		ft_memcpy(tokens[e]->lexeme, line, temp_len);
-		tokens[e]->lexeme[temp_len + 1] = '\0';
-		//put this in to a different function and copy delimeters to their own token .
-		if (isdelimeter(*line))
-		{
-
-		}
+		tokens[e]->lexeme[temp_len] = '\0';
+		line += temp_len;
+		e++;
 	}
+	return (tokens);
 }
 
 int	num_of_splits(char *line)
@@ -46,11 +54,11 @@ int	num_of_splits(char *line)
 	{
 		if (ft_isalpha(line[i]) && isdelimeter(line[i + 1]))
 			count++;
-		if (isdelimeter(line[i]) && line[i] != ' ')
+		else if (isdelimeter(line[i]) && line[i] != SPACE)
 			count++;
-		if ((line[i] == '>' && line[i + 1] == '>') || (line[i] == '<' && line[i + 1] == '<'))
+		else if ((line[i] == '>' && line[i + 1] == '>') || (line[i] == '<' && line[i + 1] == '<'))
 			count--;
-		if (!isdelimeter(line[i]) && line[i + 1] == '\0')
+		else if (!isdelimeter(line[i]) && line[i + 1] == '\0')
 			count++;
 		i++;
 	}
@@ -83,4 +91,40 @@ int	ft_strnlen(const char *s)
 	while (!isdelimeter(s[count]) && s[count])
 		count++;
 	return (count);
+}
+
+int	copy_delimeter(t_token *token, char *line)
+{
+	int	i;
+	int	len;
+
+	len = 1;
+	i = 0;
+	if ((line[i] == '<' && line[i + 1] == '<')
+	|| (line[i] == '>' && line[i + 1] == '>'))
+		len = 2;
+	token->lexeme = (char *) malloc((len + 1) * sizeof(char));
+	while(i < len)
+	{
+		token->lexeme[i] = line[i];
+		i++;
+	}
+	token->lexeme[i] = '\0';
+	return(len);
+}
+
+t_token	**allocate_tokens(int n)
+{
+	t_token	**tokens;
+	int	i;
+
+	tokens = (t_token **) malloc((n + 1)* sizeof(t_token *));
+	i = 0;
+	while (i < n)
+	{
+		tokens[i] = (t_token *) malloc(1 * sizeof(t_token));
+		i++;
+	}
+	tokens[i] = NULL;
+	return (tokens);
 }
