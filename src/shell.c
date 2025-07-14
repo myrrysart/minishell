@@ -33,7 +33,7 @@ int	shell_loop(t_shell *shell)
 			add_history(line);
 		ft_printf("%s was written, this does nothing else yet\n", line);
 		shell->raw_input = line;
-		test(shell);
+		test(line, shell);
 		free(line);
 	}
 	return (shell->exit_code);
@@ -47,7 +47,7 @@ t_shell	*shell_init(char **env)
 	shell = malloc(sizeof(t_shell));
 	if (!shell)
 		return (NULL);
-	shell->exit_code = 0;
+	shell->exit_code = EXIT_OK;
 	shell->should_exit = 0;
 	shell->arena_pool = arena_create(ARENA_BUFFER);
 	if (!shell->arena_pool)

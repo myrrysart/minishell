@@ -17,6 +17,6 @@ void	test(char *line, t_shell *data)
 	if (!ft_memcmp(line, "exit", 5))
 	{
 		data->should_exit = 1;
-		data->exit_code = EXIT_EXIT;
+		data->exit_code = EXIT_OK;
 	}
 }
